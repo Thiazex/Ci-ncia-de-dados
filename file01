@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+
+import requests as rq
+from bs4 import BeautifulSoup
+import re
+
+dados = {} #
+
+try:
+  url = 'https://www.infoescola.com/comunicacao/alfabetos/'
+  response = rq.get(url)
+  pagina_html = BeautifulSoup(response.text,'html.parser') 
+  #print(pagina_html)
+
+  article_dados = pagina_html.find('article')
+  #print(article_dados)
+  p_menor = article_dados.find_all('p')
+  print(p_menor[4].get_text())
+
+
+except Exception as e:
+  print(e)
